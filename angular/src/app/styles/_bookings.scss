@@ -1,0 +1,40 @@
+
+
+
+  .toppinglbl { display: block; }
+
+
+#bookingsarea { margin-top: 30px;
+
+
+  .bookings {
+    .h-body { max-height: 450px; overflow: auto; position: relative; }
+    .c-child { flex: 60%; }
+    .c-day { flex: 0 0 40%; text-align: right; position: relative; padding-left: 0;
+      fa-icon { margin-right: 5px; }
+    }
+    .c-class { flex: 60%; }
+    .c-status { flex: 0 0 40%; text-align: right; }
+    .h-row {      .c-child { font-weight: bold; }
+    }
+
+
+  }
+
+
+  @media (min-width: 768px) {
+    .bookings { padding: 0 25px;
+      .c-child { flex: 0 0 200px; }
+      .c-day { flex: 0 0 150px; text-align: left; padding-left: 25px;
+        fa-icon { position: absolute; left: 0; }
+      }
+      .c-class { flex: 1; }
+      .c-status { flex: 1; text-align: left; }
+      .h-row {
+        .c-child { font-weight: normal; }
+      }
+    }
+  }
+}
+
+

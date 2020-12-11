@@ -4,11 +4,14 @@ import { NgModule } from '@angular/core';
 import { ThemeBasicModule } from '@abp/ng.theme.basic';
 import { ThemeSharedModule } from '@abp/ng.theme.shared';
 import { NgxValidateCoreModule } from '@ngx-validate/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [],
   imports: [
     CoreModule,
+    FormsModule,
+    ReactiveFormsModule,
     ThemeSharedModule,
     ThemeBasicModule,
     NgbDropdownModule,
@@ -16,6 +19,8 @@ import { NgxValidateCoreModule } from '@ngx-validate/core';
   ],
   exports: [
     CoreModule,
+    FormsModule,
+    ReactiveFormsModule,
     ThemeSharedModule,
     ThemeBasicModule,
     NgbDropdownModule,
@@ -23,4 +28,4 @@ import { NgxValidateCoreModule } from '@ngx-validate/core';
   ],
   providers: []
 })
-export class SharedModule {}
+export class SharedModule { }

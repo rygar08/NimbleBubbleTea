@@ -6,11 +6,11 @@ export const environment = {
   production: false,
   application: {
     baseUrl,
-    name: 'Nm',
+    name: 'Bubble Tea Bonanza',
     logoUrl: '',
   },
   oAuthConfig: {
-    issuer: 'https://localhost:44336',
+    issuer: 'https://localhost:44322',
     redirectUri: baseUrl,
     clientId: 'Nm_App',
     responseType: 'code',
@@ -18,7 +18,7 @@ export const environment = {
   },
   apis: {
     default: {
-      url: 'https://localhost:44314',
+      url: 'https://localhost:44322',
       rootNamespace: 'Nm',
     },
   },

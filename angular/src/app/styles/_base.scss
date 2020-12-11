@@ -1,0 +1,69 @@
+
+body { background: none repeat $base-bg; color: $text-color; }
+
+button:focus,
+button { outline: 0 !important; }
+
+.btn:focus { box-shadow: 0 0 0 0.2rem rgba(0, 173, 239, 0.5) !important; }
+.section { position: relative; }
+// html { background: $base-bg2; }
+
+.btn-primary:focus, .btn-primary.focus { background-color: $active; border-color: $active; }
+
+a:link,
+a:active,
+a:visited { color: $brand; cursor: pointer; }
+
+
+.async-hide { opacity: 0 !important; }
+
+h1 { font-size: 22px; margin-bottom: 5px; margin-top: 20px; color: #4a4a4a; font-weight: 200; }
+h2 { font-size: 18px; color: $text-color; margin-bottom: 0px; margin-top: 10px; }
+
+@media (min-width: 768px) {     h1 { font-size: 30px; margin-bottom: 0; }
+  h2 { font-size: 24px; }
+}
+
+
+.btn-primary:not(:disabled):not(.disabled):active,
+.btn-primary:not(:disabled):not(.disabled).active,
+.show > .btn-primary.dropdown-toggle { color: #ffffff !important; background-color: darken($accent, 20%); border-color: darken($accent, 20%); }
+
+
+.btn {  &-link { cursor: pointer; }
+  &-sm { padding: 0.25rem 0.5rem !important; }
+
+  &.in-valid { background: #777777a1 !important; border-color: #cececea1 !important;
+    :hover { background: #ccc !important; border-color: #ccc !important; }
+  }
+}
+
+input.popup-readonly[readonly]{  background: white; }
+.is-invalid + .input-group-append .btn { border-color: red !important; }
+
+.was-validated .form-control:invalid, .form-control.is-invalid { background-position: right 20px center; }
+
+
+.h {  &-header { display: none; font-weight: bold !important; }
+  &-row { display: flex; flex-wrap: wrap; border-bottom: solid 1px #d7dada; padding: 7px 10px; padding-right: 30px; }
+  &-row:last-child {border: none}
+  &-col { flex: 1; }
+  &-tbl{
+    .h-row { padding: 5px 0; }
+  }
+  &-noitems{ color: #4a4a4a; padding: 20px; font-weight: 500; text-align: center; }
+  &-action-cancel{     font-size: 140%; color: #b5b5b5; cursor: pointer; line-height: 1; }
+  &-action-cancel:hover { color: red; }
+  &-col.c-action { position: absolute; right: 10px; } }
+
+  @media (min-width: 768px) {
+    .h {
+      &-header { display: flex; padding: 1px 10px; font-weight: bold !important; text-transform: uppercase; font-size: 90%; border-top: solid 1px #cecece; border-bottom: solid 1px #cecece; color: #cecece; }
+      &-row { flex-wrap: nowrap; padding-right: 10px; }
+      &-row:last-child {border: none}
+      &-col { flex: 1; }
+      &-tbl{      .h-row { padding: 5px 0; }
+      }
+  }
+}
+

@@ -256,5 +256,5 @@ src/Nm.Web/Logs/*
 src/Nm.Web.Host/Logs/*
 src/Nm.IdentityServer/Logs/*
 src/Nm.HttpApi.Host/Logs/*
-src/Nm.HttpApi.HostWithIds/Logs/*
+src/Nm.HttpApi.Host/Logs/*
 src/Nm.DbMigrator/Logs/*

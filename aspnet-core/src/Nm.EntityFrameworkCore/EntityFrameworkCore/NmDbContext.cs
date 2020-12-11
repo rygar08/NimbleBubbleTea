@@ -1,10 +1,15 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Nm.Users;
 using Volo.Abp.Data;
 using Volo.Abp.EntityFrameworkCore;
 using Volo.Abp.EntityFrameworkCore.Modeling;
 using Volo.Abp.Identity;
 using Volo.Abp.Users.EntityFrameworkCore;
+using Nm.Teas;
+using Nm.Flavours;
+using Nm.Toppings;
+using Nm.CupSizes;
+using Nm.Bookings;
 
 namespace Nm.EntityFrameworkCore
 {
@@ -21,10 +26,16 @@ namespace Nm.EntityFrameworkCore
     public class NmDbContext : AbpDbContext<NmDbContext>
     {
         public DbSet<AppUser> Users { get; set; }
+         
 
         /* Add DbSet properties for your Aggregate Roots / Entities here.
          * Also map them inside NmDbContextModelCreatingExtensions.ConfigureNm
          */
+        public DbSet<Tea> Teas { get; set; }
+        public DbSet<Flavour> Flavours { get; set; }
+        public DbSet<Topping> Toppings { get; set; }
+        public DbSet<CupSize> CupSizes { get; set; }
+        public DbSet<Booking> Bookings { get; set; }
 
         public NmDbContext(DbContextOptions<NmDbContext> options)
             : base(options)
