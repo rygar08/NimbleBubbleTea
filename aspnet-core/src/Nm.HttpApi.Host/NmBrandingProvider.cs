@@ -1,11 +1,10 @@
 ﻿using Volo.Abp.DependencyInjection;
 using Volo.Abp.Ui.Branding;
 
-namespace Nm
+namespace Nm;
+
+[Dependency(ReplaceServices = true)]
+public class NmBrandingProvider : DefaultBrandingProvider
 {
-    [Dependency(ReplaceServices = true)]
-    public class NmBrandingProvider : DefaultBrandingProvider
-    {
-        public override string AppName => "Nm";
-    }
+    public override string AppName => "Nm";
 }

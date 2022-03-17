@@ -1,9 +1,8 @@
 ﻿using System.Threading.Tasks;
 
-namespace Nm.Data
+namespace Nm.Data;
+
+public interface INmDbSchemaMigrator
 {
-    public interface INmDbSchemaMigrator
-    {
-        Task MigrateAsync();
-    }
+    Task MigrateAsync();
 }

@@ -3,18 +3,17 @@ using Volo.Abp.Autofac;
 using Volo.Abp.BackgroundJobs;
 using Volo.Abp.Modularity;
 
-namespace Nm.DbMigrator
+namespace Nm.DbMigrator;
+
+[DependsOn(
+    typeof(AbpAutofacModule),
+    typeof(NmEntityFrameworkCoreModule),
+    typeof(NmApplicationContractsModule)
+    )]
+public class NmDbMigratorModule : AbpModule
 {
-    [DependsOn(
-        typeof(AbpAutofacModule),
-        typeof(NmEntityFrameworkCoreDbMigrationsModule),
-        typeof(NmApplicationContractsModule)
-        )]
-    public class NmDbMigratorModule : AbpModule
+    public override void ConfigureServices(ServiceConfigurationContext context)
     {
-        public override void ConfigureServices(ServiceConfigurationContext context)
-        {
-            Configure<AbpBackgroundJobOptions>(options => options.IsJobExecutionEnabled = false);
-        }
+        Configure<AbpBackgroundJobOptions>(options => options.IsJobExecutionEnabled = false);
     }
 }

@@ -1,7 +1,6 @@
-﻿namespace Nm
-{
-    public abstract class NmDomainTestBase : NmTestBase<NmDomainTestModule> 
-    {
+﻿namespace Nm;
 
-    }
+public abstract class NmDomainTestBase : NmTestBase<NmDomainTestModule>
+{
+
 }

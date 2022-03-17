@@ -1,7 +1,6 @@
-﻿namespace Nm
+﻿namespace Nm;
+
+public static class NmDomainErrorCodes
 {
-    public static class NmDomainErrorCodes
-    {
-        /* You can add your business exception error codes here, as constants */
-    }
+    /* You can add your business exception error codes here, as constants */
 }

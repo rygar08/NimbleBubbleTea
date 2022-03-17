@@ -258,3 +258,5 @@ src/Nm.IdentityServer/Logs/*
 src/Nm.HttpApi.Host/Logs/*
 src/Nm.HttpApi.Host/Logs/*
 src/Nm.DbMigrator/Logs/*
+src/Nm.Blazor.Server/Logs/*
+src/Nm.Blazor.Server.Tiered/Logs/*

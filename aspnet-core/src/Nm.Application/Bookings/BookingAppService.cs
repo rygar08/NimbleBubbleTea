@@ -49,10 +49,10 @@ namespace Km.BookingRequests {
 
             var output = new GetBookingOptionsOutput();
 
-            output.Teas = await asyncExecuter.ToListAsync(from s in teaR select new OptionDto { Id = s.Id.ToString(), Name = s.Name });
-            output.Flavours = await asyncExecuter.ToListAsync(from s in flavourR select new OptionDto { Id = s.Id.ToString(), Name = s.Name });
-            output.Toppings = await asyncExecuter.ToListAsync(from s in toppingR select new OptionDto { Id = s.Id.ToString(), Name = s.Name });
-            output.Sizes = await asyncExecuter.ToListAsync(from s in cupSizeR select new OptionDto { Id = s.Id, Name = s.Name });
+            output.Teas = (from s in (await teaR.ToListAsync()) select new OptionDto { Id = s.Id.ToString(), Name = s.Name }).ToList();
+            output.Flavours = (from s in (await flavourR.ToListAsync()) select new OptionDto { Id = s.Id.ToString(), Name = s.Name }).ToList();
+            output.Toppings = (from s in (await toppingR.ToListAsync()) select new OptionDto { Id = s.Id.ToString(), Name = s.Name }).ToList();
+            output.Sizes = (from s in (await cupSizeR.ToListAsync()) select new OptionDto { Id = s.Id, Name = s.Name }).ToList();
 
             return output;
 
