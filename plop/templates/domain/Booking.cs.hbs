@@ -1,0 +1,25 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Volo.Abp.Domain.Entities;
+
+namespace {{ project }}.{{ model.name }}s {
+    public class {{ model.name }} : Entity<Guid> { 
+
+        {{#each model.fields as |f|}}
+           {{#if f.required}}[Required]{{/if}} 
+           {{ If f.required '[Required]' ''  }}
+           public {{f.type}} {{f.name}} { get; set; }  
+        {{/each}}
+
+
+        
+
+
+        public {{ model.name }}(Guid id) : base(id) {
+        }
+    }
+}
