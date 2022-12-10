@@ -1,6 +1,0 @@
-===========================
-==  HELLO BURGER LOVER!  ==
-===========================
-
-Here's your burger Ttx!
-Your potatoes: ttx-potatoes.txt

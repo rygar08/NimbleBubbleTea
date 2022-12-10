@@ -6,20 +6,19 @@ export default function (plop) {
   const add = function (path, templateFile) {
     return { type: "add", path, templateFile };
   }
-  const modify = function (path, pattern, template) {
-    return { type: "modify", path, pattern, template, };
-  }
+  // const modify = function (path, pattern, template) {
+  //   return { type: "modify", path, pattern, template, };
+  // }
 
-  const fileExists = function (path, template, answers) {
-    process.chdir(plop.getPlopfilePath());
-    var changeFilePath = plop.getDestBasePath() + path;
-
-    if (fs.existsSync(changeFilePath)) {
-      return plop.renderString("psst {{name}}, change-me.txt already exists", answers);
-    } else {
-      fs.writeFileSync(changeFilePath, fs.readFileSync(template));
-      return plop.renderString("hey {{name}}, I copied change-me.txt for you", answers);
+  const modify = function (path, templateFile, pattern, template) {
+    // process.chdir(plop.getPlopfilePath());
+    var changeFilePath = plop.getDestBasePath() + "/" + path;
+ 
+    if (!fs.existsSync(changeFilePath)) {
+      fs.writeFileSync(changeFilePath, fs.readFileSync(templateFile));
     }
+
+    return { type: "modify", path, pattern, template, };
   }
 
   plop.addHelper("dashAround", (text) => "---- " + text + " ----");
@@ -73,9 +72,8 @@ export default function (plop) {
     actions: function (data) {
       var actions = [
         `this is a comment`,
-        add("folder/{{dashCase name}}.txt", "templates/temp.txt"),
-        (answers) => fileExists("/folder/change-me.txt", "templates/change-me.txt", answers),
-        modify("folder/change-me.txt", /(-- APPEND ITEMS HERE --)/gi, "$1\r\n{{name}}: {{age}}"),
+        add("folder/{{dashCase name}}.txt", "templates/temp.txt"), 
+        modify("folder/change-me.txt", "templates/change-me.txt", /(-- APPEND ITEMS HERE --)/gi, "$1\r\n{{name}}: {{age}}"),
         // {
         //   type: "modify",
         //   path: "folder/change-me.txt",
