@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Volo.Abp.Domain.Entities;
 
-namespace Nm.Bookings {
+namespace {{ project }}.Bookings {
     public class Booking : Entity<Guid> { 
 
         [Required]

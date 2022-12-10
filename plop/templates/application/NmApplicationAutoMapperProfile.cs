@@ -1,18 +1,18 @@
-﻿using Nm.Teas;
-using Nm.Teas.Dtos;
-using Nm.Flavours;
-using Nm.Flavours.Dtos;
-using Nm.Toppings;
-using Nm.Toppings.Dtos;
-using Nm.Bookings;
-using Nm.Bookings.Dtos;
+﻿using {{ project }}.Teas;
+using {{ project }}.Teas.Dtos;
+using {{ project }}.Flavours;
+using {{ project }}.Flavours.Dtos;
+using {{ project }}.Toppings;
+using {{ project }}.Toppings.Dtos;
+using {{ project }}.Bookings;
+using {{ project }}.Bookings.Dtos;
 using AutoMapper; 
 
-namespace Nm;
+namespace {{ project }};
 
-public class NmApplicationAutoMapperProfile : Profile
+public class {{ project }}ApplicationAutoMapperProfile : Profile
 {
-    public NmApplicationAutoMapperProfile()
+    public {{ project }}ApplicationAutoMapperProfile()
     {
         /* You can configure your AutoMapper mapping configuration here.
          * Alternatively, you can split your mapping configurations

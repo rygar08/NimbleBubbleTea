@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
 
-namespace Nm.Bookings.Dtos {
+namespace {{ project }}.Bookings.Dtos {
+
     [Serializable]
     public class SubmitInput {
         public BookingDto Booking { get; set; }
@@ -50,38 +51,5 @@ namespace Nm.Bookings.Dtos {
         public string Name { get; set; }
 
     }
-
-
-    //[Serializable]
-    //public class TeaDto {
-
-    //    public Guid Id { get; set; }
-    //    public string Name { get; set; }
-
-    //}
-
-    //[Serializable]
-    //public class FlavourDto {
-
-    //    public Guid Id { get; set; }
-    //    public string Name { get; set; }
-
-    //}
-
-    //[Serializable]
-    //public class ToppingDto {
-
-    //    public Guid Id { get; set; }
-    //    public string Name { get; set; }
-
-    //}
-
-
-    //[Serializable]
-    //public class CupSizeDto {
-
-    //    public Guid Id { get; set; }
-    //    public string Name { get; set; }
-
-    //}
+ 
 }

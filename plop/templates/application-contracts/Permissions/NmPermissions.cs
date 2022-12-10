@@ -1,8 +1,8 @@
-namespace Nm.Permissions
+namespace {{ project }}.Permissions
 {
-    public static class NmPermissions
+    public static class {{ project }}Permissions
     {
-        public const string GroupName = "Nm";
+        public const string GroupName = "{{ project }}";
 
         //Add your own permission names. Example:
         //public const string MyPermission1 = GroupName + ".MyPermission1";
