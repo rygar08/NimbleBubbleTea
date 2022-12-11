@@ -3,22 +3,38 @@ import fs from "fs";
 import inquirerDirectory from "inquirer-directory";
 
 export default function (plop) {
-  const add = function (path, templateFile) {
-    return { type: "add", path, templateFile };
-  }
-  // const modify = function (path, pattern, template) {
-  //   return { type: "modify", path, pattern, template, };
-  // }
 
-  const modify = function (path, templateFile, pattern, template) {
+  const config = {
+    project: 'Nm',
+    models: [
+      {
+        name: 'booking',
+        fields: [
+          { name: 'teaId', type: 'Guid', required: true },
+          { name: 'flavourId', type: 'Guid', required: true },
+          { name: 'toppingId', type: 'Guid', required: true },
+          { name: 'sizeId', type: 'Guid', required: true },
+          { name: 'price', type: 'Double' },
+        ]
+      }
+    ]
+  }
+
+
+
+  const add = function (path, templateFile, data) {
+    return { type: "add", path, templateFile , data};
+  }
+
+  const modify = function (path, templateFile, pattern, template, data) {
     // process.chdir(plop.getPlopfilePath());
     var changeFilePath = plop.getDestBasePath() + "/" + path;
- 
+
     if (!fs.existsSync(changeFilePath)) {
       fs.writeFileSync(changeFilePath, fs.readFileSync(templateFile));
     }
 
-    return { type: "modify", path, pattern, template, };
+    return { type: "modify", path, pattern, template, data};
   }
 
   plop.addHelper("dashAround", (text) => "---- " + text + " ----");
@@ -40,40 +56,24 @@ export default function (plop) {
   });
 
   // setGenerator creates a generator that can be run with "plop generatorName"
-  plop.setGenerator("test", {
-    description: "this is a test",
+  plop.setGenerator("model", {
+    description: "Render model",
     prompts: [
       {
-        type: "input", name: "name", message: "What is your name?",
-        validate: function (value) {
-          if (/.+/.test(value)) { return true; }
-          return "name is required";
-        },
-      },
-      {
-        type: "input", name: "age", message: "How old are you?",
-        validate: function (value) {
-          var digitsOnly = /\d+/;
-          if (digitsOnly.test(value)) { return true; }
-          return "Invalid age! Must be a number genius!";
-        },
-      },
-      {
-        type: "checkbox", name: "toppings", message: "What pizza toppings do you like?",
-        choices: [
-          { name: "Cheese", value: "cheese", checked: true },
-          { name: "Pepperoni", value: "pepperoni" },
-          { name: "Pineapple", value: "pineapple" },
-          { name: "Mushroom", value: "mushroom" },
-          { name: "Bacon", value: "bacon", checked: true },
-        ],
+        type: "confirm", name: "name", message: "Have you done a commit? Continue?", 
       },
     ],
     actions: function (data) {
+
+      var modelData  = { project: config.project, model: config.models[0]};
+
+
+
       var actions = [
-        `this is a comment`,
-        add("folder/{{dashCase name}}.txt", "templates/temp.txt"), 
-        modify("folder/change-me.txt", "templates/change-me.txt", /(-- APPEND ITEMS HERE --)/gi, "$1\r\n{{name}}: {{age}}"),
+        `Renerding Model`, 
+        add("folder/{{properCase model.name}}.cs", "templates/domain/Booking.cs.hbs", modelData),
+        // add("folder/{{dashCase name}}.txt", "templates/temp.txt"),
+        // modify("folder/change-me.txt", "templates/change-me.txt", /(-- APPEND ITEMS HERE --)/gi, "$1\r\n{{name}}: {{age}}"),
         // {
         //   type: "modify",
         //   path: "folder/change-me.txt",

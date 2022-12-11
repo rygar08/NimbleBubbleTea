@@ -1,9 +1,0 @@
-the modify option in the test plop should add lines below for each run.
-Use modify for things like adding script references to an HTML file.
-
--- APPEND ITEMS HERE --
-tx: 12
-
-+++++++++++++++++++++++++++++++++++++++
-
--- PREPEND ITEMS HERE --

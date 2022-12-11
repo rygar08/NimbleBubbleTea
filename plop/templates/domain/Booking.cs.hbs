@@ -6,20 +6,16 @@ using System.Text;
 using System.Threading.Tasks;
 using Volo.Abp.Domain.Entities;
 
-namespace {{ project }}.{{ model.name }}s {
-    public class {{ model.name }} : Entity<Guid> { 
+namespace {{ project }}.{{ properCase model.name }}s {
+    public class {{ properCase model.name }} : Entity<Guid> { 
 
         {{#each model.fields as |f|}}
-           {{#if f.required}}[Required]{{/if}} 
-           {{ If f.required '[Required]' ''  }}
-           public {{f.type}} {{f.name}} { get; set; }  
-        {{/each}}
+           {{#if f.required}}[Required]{{/if}}  
+           public {{f.type}} {{ properCase f.name}} { get; set; }  
+        {{/each}} 
 
 
-        
-
-
-        public {{ model.name }}(Guid id) : base(id) {
+        public {{ properCase model.name }}(Guid id) : base(id) {
         }
     }
 }
