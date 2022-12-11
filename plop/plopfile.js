@@ -23,7 +23,7 @@ export default function (plop) {
 
 
   const add = function (path, templateFile, data) {
-    return { type: "add", path, templateFile , data};
+    return { type: "add", path, templateFile, data, force: true };
   }
 
   const modify = function (path, templateFile, pattern, template, data) {
@@ -34,7 +34,7 @@ export default function (plop) {
       fs.writeFileSync(changeFilePath, fs.readFileSync(templateFile));
     }
 
-    return { type: "modify", path, pattern, template, data};
+    return { type: "modify", path, pattern, template, data };
   }
 
   plop.addHelper("dashAround", (text) => "---- " + text + " ----");
@@ -60,49 +60,53 @@ export default function (plop) {
     description: "Render model",
     prompts: [
       {
-        type: "confirm", name: "name", message: "Have you done a commit? Continue?", 
+        type: "confirm", name: "name", message: "Have you done a commit? Continue?",
       },
     ],
     actions: function (data) {
 
-      var modelData  = { project: config.project, model: config.models[0]};
 
+      var actions = [];
 
+      config.models.forEach(m => {
+        var modelData = { project: config.project, model: m };
+        actions.push(add("folder/{{properCase model.name}}.cs", "templates/domain/model.cs.hbs", modelData));
+      });
 
-      var actions = [
-        `Renerding Model`, 
-        add("folder/{{properCase model.name}}.cs", "templates/domain/Booking.cs.hbs", modelData),
-        // add("folder/{{dashCase name}}.txt", "templates/temp.txt"),
-        // modify("folder/change-me.txt", "templates/change-me.txt", /(-- APPEND ITEMS HERE --)/gi, "$1\r\n{{name}}: {{age}}"),
-        // {
-        //   type: "modify",
-        //   path: "folder/change-me.txt",
-        //   pattern: /(-- PREPEND ITEMS HERE --)/gi,
-        //   templateFile: "templates/part.txt",
-        // },
-        // {
-        //   type: "modify",
-        //   path: "folder/change-me.txt",
-        //   pattern: /## replace name here ##/gi,
-        //   template: "replaced => {{dashCase name}}",
-        // },
-        // {
-        //   type: "modify",
-        //   path: "folder/change-me.txt",
-        //   skip(data) {
-        //     if (!data.toppings.includes("mushroom")) {
-        //       // Skip this action
-        //       return "Skipped replacing mushrooms";
-        //     } else {
-        //       // Continue with this action
-        //       return;
-        //     }
-        //   },
-        //   transform(fileContents, data) {
-        //     return fileContents.replace(/mushrooms/g, "pepperoni");
-        //   },
-        // },
-      ];
+      // var actions = [
+      //   `Renerding Model`,
+      //   ,
+      //   // add("folder/{{dashCase name}}.txt", "templates/temp.txt"),
+      //   // modify("folder/change-me.txt", "templates/change-me.txt", /(-- APPEND ITEMS HERE --)/gi, "$1\r\n{{name}}: {{age}}"),
+      //   // {
+      //   //   type: "modify",
+      //   //   path: "folder/change-me.txt",
+      //   //   pattern: /(-- PREPEND ITEMS HERE --)/gi,
+      //   //   templateFile: "templates/part.txt",
+      //   // },
+      //   // {
+      //   //   type: "modify",
+      //   //   path: "folder/change-me.txt",
+      //   //   pattern: /## replace name here ##/gi,
+      //   //   template: "replaced => {{dashCase name}}",
+      //   // },
+      //   // {
+      //   //   type: "modify",
+      //   //   path: "folder/change-me.txt",
+      //   //   skip(data) {
+      //   //     if (!data.toppings.includes("mushroom")) {
+      //   //       // Skip this action
+      //   //       return "Skipped replacing mushrooms";
+      //   //     } else {
+      //   //       // Continue with this action
+      //   //       return;
+      //   //     }
+      //   //   },
+      //   //   transform(fileContents, data) {
+      //   //     return fileContents.replace(/mushrooms/g, "pepperoni");
+      //   //   },
+      //   // },
+      // ];
       return actions;
     },
   });
