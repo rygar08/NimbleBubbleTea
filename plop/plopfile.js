@@ -1,77 +1,65 @@
 import path from "path";
 import fs from "fs";
 import inquirerDirectory from "inquirer-directory";
+import { Helpers } from "./helpers.js";
 
 export default function (plop) {
+
+  var helpers = new Helpers(plop);
 
   const config = {
     project: 'Nm',
     models: [
       {
-        name: 'booking',
+        name: 'booking', type: 'Guid',
         fields: [
           { name: 'teaId', type: 'Guid', required: true },
           { name: 'flavourId', type: 'Guid', required: true },
           { name: 'toppingId', type: 'Guid', required: true },
-          { name: 'sizeId', type: 'Guid', required: true },
+          { name: 'sizeId', type: 'Guid', required: true, options: 'cupSize' },
           { name: 'price', type: 'Double' },
+        ]
+      },
+      {
+        name: 'cupSize', type: 'string',
+        fields: [
+          { name: 'name', type: 'string' },
+        ]
+      },
+      {
+        name: 'flavour', type: 'Guid',
+        fields: [
+          { name: 'name', type: 'string' },
+        ]
+      },
+      {
+        name: 'topping', type: 'Guid',
+        fields: [
+          { name: 'name', type: 'string' },
+        ]
+      },
+      {
+        name: 'tea', type: 'Guid',
+        fields: [
+          { name: 'name', type: 'string' },
         ]
       }
     ]
   }
 
 
-
-  const add = function (path, templateFile, data) {
-    return { type: "add", path, templateFile, data, force: true };
-  }
-
-  const modify = function (path, templateFile, pattern, template, data) {
-    // process.chdir(plop.getPlopfilePath());
-    var changeFilePath = plop.getDestBasePath() + "/" + path;
-
-    if (!fs.existsSync(changeFilePath)) {
-      fs.writeFileSync(changeFilePath, fs.readFileSync(templateFile));
-    }
-
-    return { type: "modify", path, pattern, template, data };
-  }
-
-  plop.addHelper("dashAround", (text) => "---- " + text + " ----");
-  plop.addHelper("wordJoin", function (words) {
-    return words.join(", ").replace(/(:?.*),/, "$1, and");
-  });
-  plop.addHelper("absPath", function (p) {
-    return path.resolve(plop.getPlopfilePath(), p);
-  });
-  plop.addPartial(
-    "salutation",
-    "{{ greeting }}, my name is {{ properCase name }} and I am {{ age }}."
-  );
-  plop.load("plop-pack-fancy-comments", {
-    prefix: "",
-    upperCaseHeaders: true,
-    commentStart: "",
-    commentEnd: "",
-  });
-
-  // setGenerator creates a generator that can be run with "plop generatorName"
   plop.setGenerator("model", {
     description: "Render model",
-    prompts: [
-      {
-        type: "confirm", name: "name", message: "Have you done a commit? Continue?",
-      },
-    ],
+    prompts: [{ type: "confirm", name: "name", message: "Have you done a commit? Continue?", },],
     actions: function (data) {
-
-
       var actions = [];
-
       config.models.forEach(m => {
         var modelData = { project: config.project, model: m };
-        actions.push(add("folder/{{properCase model.name}}.cs", "templates/domain/model.cs.hbs", modelData));
+        actions.push(helpers.add("folder/{{properCase model.name}}.cs", "templates/api/model.cs.hbs", modelData));
       });
+      actions.push(helpers.add("folder/{{project}}ApplicationAutoMapperProfile.cs", "templates/api/applicationAutoMapperProfile.cs.hbs", config));
+      actions.push(helpers.add("folder/{{project}}PermissionDefinitionProvider.cs", "templates/api/permissionDefinitionProvider.cs.hbs", config));
+      actions.push(helpers.add("folder/{{project}}Permissions.cs", "templates/api/permissions.cs.hbs", config));
 
       // var actions = [
       //   `Renerding Model`,

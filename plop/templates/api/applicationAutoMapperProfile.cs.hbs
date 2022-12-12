@@ -18,13 +18,8 @@ public class {{ project }}ApplicationAutoMapperProfile : Profile
          * Alternatively, you can split your mapping configurations
          * into multiple profile classes for a better organization. */
 
-
-        CreateMap<Tea, TeaDto>();
-        CreateMap<CreateUpdateTeaDto, Tea>(MemberList.Source);
-        CreateMap<Flavour, FlavourDto>();
-        CreateMap<CreateUpdateFlavourDto, Flavour>(MemberList.Source);
-        CreateMap<Topping, ToppingDto>();
-        CreateMap<CreateUpdateToppingDto, Topping>(MemberList.Source);
-        CreateMap<Booking, BookingDto>();
+    {{#each models as |m|}}
+        CreateMap<{{ properCase m.name}}, {{ properCase m.name}}Dto>(); 
+    {{/each}}  
     }
 }

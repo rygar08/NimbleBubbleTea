@@ -1,0 +1,32 @@
+using Nm.Localization;
+using Volo.Abp.Authorization.Permissions;
+using Volo.Abp.Localization;
+
+namespace {{project}}.Permissions
+{
+    public class {{project}}PermissionDefinitionProvider : PermissionDefinitionProvider
+    {
+        public override void Define(IPermissionDefinitionContext context)
+        {
+            var myGroup = context.AddGroup({{project}}Permissions.GroupName);
+
+            //Define your own permissions here. Example:
+            //myGroup.AddPermission({{project}}Permissions.MyPermission1, L("Permission:MyPermission1"));
+
+        {{#each models as |m|}}
+            var {{ m.name}}Perm = myGroup.AddPermission({{project}}Permissions.{{ properCase m.name}}.Default, L("Permission:{{ properCase m.name}}"));
+            {{ m.name}}Perm.AddChild({{project}}Permissions.{{ properCase m.name}}.Create, L("Permission:Create"));
+            {{ m.name}}Perm.AddChild({{project}}Permissions.{{ properCase m.name}}.Update, L("Permission:Update"));
+            {{ m.name}}Perm.AddChild({{project}}Permissions.{{ properCase m.name}}.Delete, L("Permission:Delete")); 
+            
+        {{/each}}   
+
+            
+        }
+
+        private static LocalizableString L(string name)
+        {
+            return LocalizableString.Create<NmResource>(name);
+        }
+    }
+}

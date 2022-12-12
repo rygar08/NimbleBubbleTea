@@ -1,20 +1,26 @@
-namespace {{ project }}.Permissions
+namespace Nm.Permissions
 {
-    public static class {{ project }}Permissions
+    public static class NmPermissions
     {
-        public const string GroupName = "{{ project }}";
+        public const string GroupName = "Nm";
 
         //Add your own permission names. Example:
         //public const string MyPermission1 = GroupName + ".MyPermission1";
 
-        public class Tea
+        public class Booking
         {
-            public const string Default = GroupName + ".Tea";
+            public const string Default = GroupName + ".Booking";
             public const string Update = Default + ".Update";
             public const string Create = Default + ".Create";
             public const string Delete = Default + ".Delete";
         }
-
+        public class CupSize
+        {
+            public const string Default = GroupName + ".CupSize";
+            public const string Update = Default + ".Update";
+            public const string Create = Default + ".Create";
+            public const string Delete = Default + ".Delete";
+        }
         public class Flavour
         {
             public const string Default = GroupName + ".Flavour";
@@ -22,7 +28,6 @@ namespace {{ project }}.Permissions
             public const string Create = Default + ".Create";
             public const string Delete = Default + ".Delete";
         }
-
         public class Topping
         {
             public const string Default = GroupName + ".Topping";
@@ -30,10 +35,9 @@ namespace {{ project }}.Permissions
             public const string Create = Default + ".Create";
             public const string Delete = Default + ".Delete";
         }
-
-        public class Booking
+        public class Tea
         {
-            public const string Default = GroupName + ".Booking";
+            public const string Default = GroupName + ".Tea";
             public const string Update = Default + ".Update";
             public const string Create = Default + ".Create";
             public const string Delete = Default + ".Delete";
