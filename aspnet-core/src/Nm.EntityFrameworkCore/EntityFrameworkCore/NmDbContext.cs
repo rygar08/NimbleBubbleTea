@@ -54,18 +54,18 @@ public class NmDbContext :
     public DbSet<IdentitySecurityLog> SecurityLogs { get; set; }
     public DbSet<IdentityLinkUser> LinkUsers { get; set; }
 
+
     // Tenant Management
     public DbSet<Tenant> Tenants { get; set; }
     public DbSet<TenantConnectionString> TenantConnectionStrings { get; set; }
 
     #endregion
 
-
-    public DbSet<Tea> Teas { get; set; }
+    public DbSet<Booking> Bookings { get; set; }
+    public DbSet<CupSize> CupSizes { get; set; }
     public DbSet<Flavour> Flavours { get; set; }
     public DbSet<Topping> Toppings { get; set; }
-    public DbSet<CupSize> CupSizes { get; set; }
-    public DbSet<Booking> Bookings { get; set; }
+    public DbSet<Tea> Teas { get; set; }
 
     public NmDbContext(DbContextOptions<NmDbContext> options)
         : base(options)

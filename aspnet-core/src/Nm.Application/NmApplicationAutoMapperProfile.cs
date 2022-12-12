@@ -18,13 +18,10 @@ public class NmApplicationAutoMapperProfile : Profile
          * Alternatively, you can split your mapping configurations
          * into multiple profile classes for a better organization. */
 
-
-        CreateMap<Tea, TeaDto>();
-        CreateMap<CreateUpdateTeaDto, Tea>(MemberList.Source);
-        CreateMap<Flavour, FlavourDto>();
-        CreateMap<CreateUpdateFlavourDto, Flavour>(MemberList.Source);
-        CreateMap<Topping, ToppingDto>();
-        CreateMap<CreateUpdateToppingDto, Topping>(MemberList.Source);
-        CreateMap<Booking, BookingDto>();
+        CreateMap<Booking, BookingDto>(); 
+        CreateMap<CupSize, CupSizeDto>(); 
+        CreateMap<Flavour, FlavourDto>(); 
+        CreateMap<Topping, ToppingDto>(); 
+        CreateMap<Tea, TeaDto>(); 
     }
 }

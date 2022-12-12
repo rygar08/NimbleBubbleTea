@@ -9,6 +9,8 @@ export default function (plop) {
 
   const config = {
     project: 'Nm',
+    apiRoot: '../aspnet-core/src',
+    spaRoot: '',
     models: [
       {
         name: 'booking', type: 'Guid',
@@ -20,34 +22,13 @@ export default function (plop) {
           { name: 'price', type: 'Double' },
         ]
       },
-      {
-        name: 'cupSize', type: 'string',
-        fields: [
-          { name: 'name', type: 'string' },
-        ]
-      },
-      {
-        name: 'flavour', type: 'Guid',
-        fields: [
-          { name: 'name', type: 'string' },
-        ]
-      },
-      {
-        name: 'topping', type: 'Guid',
-        fields: [
-          { name: 'name', type: 'string' },
-        ]
-      },
-      {
-        name: 'tea', type: 'Guid',
-        fields: [
-          { name: 'name', type: 'string' },
-        ]
-      }
+      { name: 'cupSize', type: 'string', fields: [{ name: 'name', type: 'string' },] },
+      { name: 'flavour', type: 'Guid', fields: [{ name: 'name', type: 'string' },] },
+      { name: 'topping', type: 'Guid', fields: [{ name: 'name', type: 'string' },] },
+      { name: 'tea', type: 'Guid', fields: [{ name: 'name', type: 'string' },] }
     ]
   }
-
-
+ 
   plop.setGenerator("model", {
     description: "Render model",
     prompts: [{ type: "confirm", name: "name", message: "Have you done a commit? Continue?", },],
@@ -57,9 +38,10 @@ export default function (plop) {
         var modelData = { project: config.project, model: m };
         actions.push(helpers.add("folder/{{properCase model.name}}.cs", "templates/api/model.cs.hbs", modelData));
       });
-      actions.push(helpers.add("folder/{{project}}ApplicationAutoMapperProfile.cs", "templates/api/applicationAutoMapperProfile.cs.hbs", config));
-      actions.push(helpers.add("folder/{{project}}PermissionDefinitionProvider.cs", "templates/api/permissionDefinitionProvider.cs.hbs", config));
-      actions.push(helpers.add("folder/{{project}}Permissions.cs", "templates/api/permissions.cs.hbs", config));
+      actions.push(helpers.add("{{apiRoot}}/{{project}}.Application/{{project}}ApplicationAutoMapperProfile.cs", "templates/api/applicationAutoMapperProfile.cs.hbs", config));
+      actions.push(helpers.add("{{apiRoot}}/{{project}}.Application.Contracts/{{project}}PermissionDefinitionProvider.cs", "templates/api/permissionDefinitionProvider.cs.hbs", config));
+      actions.push(helpers.add("{{apiRoot}}/{{project}}.Application.Contracts/{{project}}Permissions.cs", "templates/api/permissions.cs.hbs", config));
+      actions.push(helpers.add("{{apiRoot}}/{{project}}.EntityFrameworkCore/EntityFrameworkCore/{{project}}DbContext.cs", "templates/api/dbContext.cs.hbs", config));
 
       // var actions = [
       //   `Renerding Model`,
