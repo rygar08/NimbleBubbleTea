@@ -20,6 +20,7 @@ export default function (plop) {
           { name: 'toppingId', type: 'Guid', required: true },
           { name: 'sizeId', type: 'Guid', required: true, options: 'cupSize' },
           { name: 'price', type: 'Double' },
+          { name: 'selected', type: 'Bool' },
         ]
       },
       { name: 'cupSize', type: 'string', fields: [{ name: 'name', type: 'string' },] },
@@ -42,6 +43,12 @@ export default function (plop) {
       actions.push(helpers.add("{{apiRoot}}/{{project}}.Application.Contracts/{{project}}PermissionDefinitionProvider.cs", "templates/api/permissionDefinitionProvider.cs.hbs", config));
       actions.push(helpers.add("{{apiRoot}}/{{project}}.Application.Contracts/{{project}}Permissions.cs", "templates/api/permissions.cs.hbs", config));
       actions.push(helpers.add("{{apiRoot}}/{{project}}.EntityFrameworkCore/EntityFrameworkCore/{{project}}DbContext.cs", "templates/api/dbContext.cs.hbs", config));
+
+//       (?<=//r>)\n(.*)(?=//<r)
+// //r>
+// This is my first sentence. This is my second sentence.
+// //<r
+
 
       // var actions = [
       //   `Renerding Model`,

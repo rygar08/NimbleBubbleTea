@@ -18,6 +18,8 @@ namespace Nm.Bookings {
         public Guid SizeId { get; set; }  
           
         public Double Price { get; set; }  
+          
+        public Bool Selected { get; set; }  
     
         public Booking(Guid id) : base(id) { } 
        
